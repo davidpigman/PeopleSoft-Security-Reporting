@@ -278,3 +278,5 @@ End-While;
 ``` SQL
 %UpdateStats(XX_EOEC_NAV_ALL, HIGH)
 ```
+
+
