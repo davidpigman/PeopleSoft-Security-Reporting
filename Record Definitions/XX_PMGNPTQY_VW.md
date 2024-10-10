@@ -1,0 +1,86 @@
+<style scoped>
+table {
+  font-size: 13px;
+}
+</style>
+
+
+#### **XX_PMGNPTQY_VW** 
+| Record Name         | Description        |  
+| ------------------- | ------------------ | 
+| **XX_PMGNPTQY_VW**   | Navigation View   |
+
+| Num | Field Name         | Key | 
+| --- | ------------------ | --- | 
+| 1   | CLASSID            | Asc |
+| 2   | XX_STARTAPPSERVER  |     |
+| 3   | XX_ALLOWPSWDEMAIL  |     |
+| 4   | XX_TIMEOUTMINUTES  |     |
+| 5   | DATAMOVERCHK       |     |
+| 6   | APPDESCHK          |     |
+| 7   | OBJSECURITYCHK     |     |
+| 8   | QUERYCHK           |     |
+| 9   | PPMI_CHK           |     |
+| 10  | ARCH_SEC_GEN       |     |
+| 11  | ARCH_SEC_RUN       |     |
+| 12  | ARCH_SEC_EDIT      |     |
+| 13  | QRY_RUN_ONLY       |     |
+| 14  | ARCH_SEC_PRGE      |     |
+| 15  | QRY_CREATE_PUBLIC  |     |
+| 16  | QRY_CREATE_WFLOW   |     |
+| 17  | QRY_MAX_FETCH      |     |
+| 18  | QRY_MAX_RUN        |     |
+| 19  | QRY_ADV_DISTINCT   |     |
+| 20  | QRY_ADV_ANY_JOIN   |     |
+| 21  | QRY_ADV_SUBQUERY   |     |
+| 22  | QRY_ADV_UNION      |     |
+| 23  | QRY_ADV_EXPR       |     |
+| 24  | QRY_MAX_JOINS      |     |
+| 25  | QRY_MAX_IN_TREE    |     |
+| 26  | QRY_OUT_LISTBOX    |     |
+| 27  | QRY_OUT_NVISION    |     |
+| 28  | QRY_OUT_CRYSTAL    |     |
+| 29  | QRY_ADM_AUTOPUBLIC |     |
+| 30  | QRY_ADM_AUTOPRIV   |     |
+| 31  | QRY_ADM_LIMUNAPPRV |     |
+| 32  | QRY_ADM_UNAPP_ROWS |     |
+
+<font size="2">**SQL (All Databases)**</font> 
+
+``` SQL
+ SELECT CD.CLASSID 
+ , CASE CD.STARTAPPSERVER WHEN 0 THEN 'N' ELSE 'Y' END 
+ , CASE CD.ALLOWPSWDEMAIL WHEN 0 THEN 'N' ELSE 'Y' END 
+ , CASE CD.TIMEOUTMINUTES WHEN 0 THEN 'N' ELSE CAST(CD.TIMEOUTMINUTES AS VARCHAR(5)) END 
+ , %Coalesce(( SELECT DISTINCT 'Y' FROM PSAUTHITEM A1 WHERE A1.CLASSID = CD.CLASSID AND A1.MENUNAME = 'DATA_MOVER'),'N') 
+ , %Coalesce(( SELECT DISTINCT 'Y' FROM PSAUTHITEM A2 WHERE A2.CLASSID = CD.CLASSID AND A2.MENUNAME = 
+'APPLICATION_DESIGNER'),'N') 
+ , %Coalesce(( SELECT DISTINCT 'Y' FROM PSAUTHITEM A2 WHERE A2.CLASSID = CD.CLASSID AND A2.MENUNAME = 'OBJECT_SECURITY'),'N') 
+
+ , %Coalesce(( SELECT DISTINCT 'Y' FROM PSAUTHITEM A2 WHERE A2.CLASSID = CD.CLASSID AND A2.MENUNAME = 'QUERY_MANAGER'),'N') 
+ , %Coalesce(( SELECT DISTINCT 'Y' FROM PSAUTHITEM A2 WHERE A2.CLASSID = CD.CLASSID AND A2.MENUNAME = 'PERFMONPPMI'),'N') 
+ , %Coalesce(( SELECT R1.ARCH_SEC_GEN FROM PS_ARCH_SECURITY R1 WHERE R1.ARCH_CLASS = CD.CLASSID),'N') 
+ , %Coalesce(( SELECT R1.ARCH_SEC_EDIT FROM PS_ARCH_SECURITY R1 WHERE R1.ARCH_CLASS = CD.CLASSID),'N') 
+ , %Coalesce(( SELECT R1.ARCH_SEC_RUN FROM PS_ARCH_SECURITY R1 WHERE R1.ARCH_CLASS = CD.CLASSID),'N') 
+ , %Coalesce(( SELECT R1.ARCH_SEC_PRGE FROM PS_ARCH_SECURITY R1 WHERE R1.ARCH_CLASS = CD.CLASSID),'N') 
+ , SQ.QRY_RUN_ONLY 
+ , SQ.QRY_CREATE_PUBLIC 
+ , SQ.QRY_CREATE_WFLOW 
+ , SQ.QRY_MAX_FETCH 
+ , SQ.QRY_MAX_RUN 
+ , SQ.QRY_ADV_DISTINCT 
+ , SQ.QRY_ADV_ANY_JOIN 
+ , SQ.QRY_ADV_SUBQUERY 
+ , SQ.QRY_ADV_UNION 
+ , SQ.QRY_ADV_EXPR 
+ , SQ.QRY_MAX_JOINS 
+ , SQ.QRY_MAX_IN_TREE 
+ , SQ.QRY_OUT_LISTBOX 
+ , SQ.QRY_OUT_NVISION 
+ , SQ.QRY_OUT_CRYSTAL 
+ , SQ.QRY_ADM_AUTOPUBLIC 
+ , SQ.QRY_ADM_AUTOPRIV 
+ , SQ.QRY_ADM_LIMUNAPPRV 
+ , SQ.QRY_ADM_UNAPP_ROWS 
+  FROM PSCLASSDEFN CD LEFT OUTER JOIN PS_SCRTY_QUERY SQ ON CD.CLASSID = SQ.CLASSID
+```
