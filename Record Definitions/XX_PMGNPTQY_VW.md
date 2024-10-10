@@ -1,10 +1,3 @@
-<style scoped>
-table {
-  font-size: 13px;
-}
-</style>
-
-
 #### **XX_PMGNPTQY_VW** 
 | Record Name         | Description        |  
 | ------------------- | ------------------ | 

@@ -1,9 +1,3 @@
-<style scoped>
-table {
-  font-size: 13px;
-}
-</style>
-
 #### **XX_PNLDEFN_VW** 
 | Record Name         | Description        |  
 | ------------------- | ------------------ | 

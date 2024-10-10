@@ -1,10 +1,4 @@
 
-<style scoped>
-table {
-  font-size: 13px;
-}
-</style>
-
 # Custom Fields
 Add these custom fields to support the record definitions
 

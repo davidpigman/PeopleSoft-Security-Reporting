@@ -1,19 +1,16 @@
-<style scoped>
-table {
-  font-size: 13px;
-}
-</style>
-
 #### **XXPTSECRPT**
 
 State Record: XX_SECMT_AET
 
 ##### XXPTSECRPT.MAIN 
+
+<sub><sup>
 | Section     | Step   | Commit After | Action |  
 | ----------- | ------ | ------------ | -------|  
 | MAIN        |
 |             | SelRun | Default      | 
 |             |        |              | SQL    |
+</sup></sub>
 
 ``` SQL
 %SelectInit(OPRID, RUN_CNTL_ID) 

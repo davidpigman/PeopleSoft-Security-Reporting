@@ -1,9 +1,3 @@
-<style scoped>
-table {
-  font-size: 13px;
-}
-</style>
-
 # Custom Record Definitions
 ## Views
 Add these custom record definition views
